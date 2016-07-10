@@ -75,9 +75,7 @@ setwd("/Users/wkerneck/desktop/Voter_Data/")
 - 1.0  [Import data](#id-section1)
 - 1.1  [Alphabetic List of Variables and Attributes](#id-section2)
 - 1.2  [Explorative Data Analysis (EDA)](#id-section3)
-    
 - 2.0 [Conclusion and Summary](#id-section4) 
-
 - 3.0 [Acknowledgements](#id-section5) 
 
 ****************************
