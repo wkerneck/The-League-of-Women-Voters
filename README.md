@@ -83,44 +83,64 @@ We have downloaded the data in a .CSV format. The .CSV file (LWV_Data.csv) was s
 
 
 ```r
-ImportedAsIsData <- read.table("LWV_Data.csv", header=TRUE, sep=",")
+ImportedAsIsData <- read.table("LWV_Data.csv", header=TRUE, sep=",", na.strings=c("NA", "NULL"))
 
-dim(ImportedAsIsData)
+ImportedCleanedData <- ImportedAsIsData[complete.cases(ImportedAsIsData),]
+
+dim(ImportedCleanedData)
 ```
 
 ```
-## [1] 531735     27
+## [1] 24000    27
 ```
 
 ```r
-head(ImportedAsIsData, n=3)
+head(ImportedCleanedData)
 ```
 
 ```
-##   VOTED2014 Young.Hispanic.Status ID.Number Voter.Status Voted.11.2012
-## 1         0           non_y_non_h       186            A             0
-## 2         0           non_y_non_h       669            A             0
-## 3         0           non_y_non_h      1483            A             0
-##   Voted.Gen..Elec..09.2010 Voted.Gen..Elec..07.2008
-## 1                        0                        0
-## 2                        0                        0
-## 3                        0                        1
-##   Number.General.Elections Hispanic.Surname Young.Voter Eligible.2012
-## 1                        0                0           0             1
-## 2                        0                0           0             1
-## 3                        1                0           0             1
-##   Eligible.2010 Eligible.2008 Young.in.2012 Young.in.2010 Young.in.2008
-## 1             1             1             0             0             0
-## 2             1             1             0             0             0
-## 3             1             1             0             0             0
-##     Voter.Category type   ID control post flyer LOWPROP       city   zip
-## 1 Old Not Hispanic       186      NA   NA    NA       1     DALLAS 75230
-## 2 Old Not Hispanic       669      NA   NA    NA       1     DALLAS 75229
-## 3 Old Not Hispanic      1483      NA   NA    NA       1 CARROLLTON 75006
-##   U_S__CONGRESS byear
-## 1            24  1938
-## 2            32  1953
-## 3            24  1911
+##     VOTED2014 Young.Hispanic.Status ID.Number Voter.Status Voted.11.2012
+## 39          0               non_y_h      5461            A             1
+## 51          0               non_y_h      6832            A             0
+## 217         0           non_y_non_h     16298            A             0
+## 313         1               non_y_h     20802            A             0
+## 370         0           non_y_non_h     23641            A             0
+## 374         0           non_y_non_h     23821            A             0
+##     Voted.Gen..Elec..09.2010 Voted.Gen..Elec..07.2008
+## 39                         0                        0
+## 51                         0                        0
+## 217                        0                        1
+## 313                        0                        1
+## 370                        1                        0
+## 374                        0                        1
+##     Number.General.Elections Hispanic.Surname Young.Voter Eligible.2012
+## 39                         1                1           0             1
+## 51                         0                1           0             1
+## 217                        1                0           0             1
+## 313                        1                1           0             1
+## 370                        1                0           0             1
+## 374                        1                0           0             1
+##     Eligible.2010 Eligible.2008 Young.in.2012 Young.in.2010 Young.in.2008
+## 39              1             1             0             0             0
+## 51              1             1             0             0             0
+## 217             1             1             0             0             0
+## 313             1             1             0             0             0
+## 370             1             1             0             0             0
+## 374             1             1             0             0             0
+##       Voter.Category             type    ID control post flyer LOWPROP
+## 39      Old Hispanic     Non_y_h_POST  5461       0    1     0       1
+## 51      Old Hispanic     Non_y_h_POST  6832       0    1     0       1
+## 217 Old Not Hispanic Non_y_non_h_POST 16298       0    1     0       1
+## 313     Old Hispanic     Non_y_h_POST 20802       0    1     0       1
+## 370 Old Not Hispanic Non_y_non_h_POST 23641       0    1     0       1
+## 374 Old Not Hispanic Non_y_non_h_POST 23821       0    1     0       1
+##           city   zip U_S__CONGRESS byear
+## 39  CARROLLTON 75007            24  1937
+## 51  CARROLLTON 75006            24  1911
+## 217    GARLAND 75042            32  1922
+## 313    GARLAND 75040            32  1938
+## 370    GARLAND 75041            32  1911
+## 374    GARLAND 75041            32  1927
 ```
 
 ****************************
@@ -129,20 +149,20 @@ head(ImportedAsIsData, n=3)
 
 
 ```r
-str(ImportedAsIsData)
+str(ImportedCleanedData)
 ```
 
 ```
-## 'data.frame':	531735 obs. of  27 variables:
-##  $ VOTED2014               : int  0 0 0 0 0 0 0 0 0 1 ...
-##  $ Young.Hispanic.Status   : Factor w/ 4 levels "non_y_h","non_y_non_h",..: 2 2 2 2 2 2 2 2 2 2 ...
-##  $ ID.Number               : int  186 669 1483 1527 1643 1882 2164 2499 2880 3020 ...
+## 'data.frame':	24000 obs. of  27 variables:
+##  $ VOTED2014               : int  0 0 0 1 0 0 0 0 1 0 ...
+##  $ Young.Hispanic.Status   : Factor w/ 4 levels "non_y_h","non_y_non_h",..: 1 1 2 1 2 2 2 2 2 2 ...
+##  $ ID.Number               : int  5461 6832 16298 20802 23641 23821 25164 27016 28260 28523 ...
 ##  $ Voter.Status            : Factor w/ 1 level "A": 1 1 1 1 1 1 1 1 1 1 ...
-##  $ Voted.11.2012           : int  0 0 0 0 0 0 0 0 0 1 ...
-##  $ Voted.Gen..Elec..09.2010: int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ Voted.Gen..Elec..07.2008: int  0 0 1 1 0 0 1 1 1 0 ...
-##  $ Number.General.Elections: int  0 0 1 1 0 0 1 1 1 1 ...
-##  $ Hispanic.Surname        : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ Voted.11.2012           : int  1 0 0 0 0 0 0 0 0 0 ...
+##  $ Voted.Gen..Elec..09.2010: int  0 0 0 0 1 0 0 1 0 0 ...
+##  $ Voted.Gen..Elec..07.2008: int  0 0 1 1 0 1 1 0 0 0 ...
+##  $ Number.General.Elections: int  1 0 1 1 1 1 1 1 0 0 ...
+##  $ Hispanic.Surname        : int  1 1 0 1 0 0 0 0 0 0 ...
 ##  $ Young.Voter             : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ Eligible.2012           : int  1 1 1 1 1 1 1 1 1 1 ...
 ##  $ Eligible.2010           : int  1 1 1 1 1 1 1 1 1 1 ...
@@ -150,17 +170,17 @@ str(ImportedAsIsData)
 ##  $ Young.in.2012           : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ Young.in.2010           : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ Young.in.2008           : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ Voter.Category          : Factor w/ 4 levels "Old Hispanic",..: 2 2 2 2 2 2 2 2 2 2 ...
-##  $ type                    : Factor w/ 13 levels "","Non_y_h_CONTROL",..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ ID                      : int  186 669 1483 1527 1643 1882 2164 2499 2880 3020 ...
-##  $ control                 : int  NA NA NA NA NA NA NA NA NA NA ...
-##  $ post                    : int  NA NA NA NA NA NA NA NA NA NA ...
-##  $ flyer                   : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ Voter.Category          : Factor w/ 4 levels "Old Hispanic",..: 1 1 2 1 2 2 2 2 2 2 ...
+##  $ type                    : Factor w/ 13 levels "","Non_y_h_CONTROL",..: 4 4 7 4 7 7 7 7 7 7 ...
+##  $ ID                      : int  5461 6832 16298 20802 23641 23821 25164 27016 28260 28523 ...
+##  $ control                 : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ post                    : int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ flyer                   : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ LOWPROP                 : int  1 1 1 1 1 1 1 1 1 1 ...
-##  $ city                    : Factor w/ 28 levels "","ADDISON","BALCH SPRINGS",..: 7 7 4 4 6 4 7 4 4 10 ...
-##  $ zip                     : int  75230 75229 75006 75006 75019 75006 75251 75006 75006 75234 ...
-##  $ U_S__CONGRESS           : int  24 32 24 24 24 24 32 24 24 24 ...
-##  $ byear                   : int  1938 1953 1911 1931 1948 1928 1926 1919 1924 1944 ...
+##  $ city                    : Factor w/ 28 levels "","ADDISON","BALCH SPRINGS",..: 4 4 12 12 12 12 12 12 12 12 ...
+##  $ zip                     : int  75007 75006 75042 75040 75041 75041 75043 75040 75040 75040 ...
+##  $ U_S__CONGRESS           : int  24 24 32 32 32 32 32 32 32 32 ...
+##  $ byear                   : int  1937 1911 1922 1938 1911 1927 1926 1928 1944 1931 ...
 ```
 
 
@@ -173,7 +193,8 @@ Let's have a look and see if there are any null values in the data.
 
 
 ```r
-sapply(ImportedAsIsData, function(x) sum(is.na(x)))
+voter_data_null_count <- sapply(ImportedCleanedData, function(x) sum(is.na(x)))
+voter_data_null_count
 ```
 
 ```
@@ -190,14 +211,17 @@ sapply(ImportedAsIsData, function(x) sum(is.na(x)))
 ##            Young.in.2008           Voter.Category                     type 
 ##                        0                        0                        0 
 ##                       ID                  control                     post 
-##                        0                   507735                   507735 
+##                        0                        0                        0 
 ##                    flyer                  LOWPROP                     city 
-##                   507735                        0                        0 
+##                        0                        0                        0 
 ##                      zip            U_S__CONGRESS                    byear 
-##                        0                        0                        1
+##                        0                        0                        0
 ```
 
-It appears the control, post, and flyer columns have over 50,000 null values. This could be a problem on why the results where so
+Ok, we just verified all NA values have been removed from the data set. Now we have identified the control population.
+
+
+
 ****************************
 <div id='id-section3'/>
 #### 2.0 Conclusion and Summary

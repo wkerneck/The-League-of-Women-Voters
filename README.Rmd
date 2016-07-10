@@ -86,10 +86,12 @@ setwd("/Users/wkerneck/desktop/Voter_Data/")
 We have downloaded the data in a .CSV format. The .CSV file (LWV_Data.csv) was saved to the root of the project folder.
 
 ```{r}
-ImportedAsIsData <- read.table("LWV_Data.csv", header=TRUE, sep=",")
+ImportedAsIsData <- read.table("LWV_Data.csv", header=TRUE, sep=",", na.strings=c("NA", "NULL"))
 
-dim(ImportedAsIsData)
-head(ImportedAsIsData, n=3)
+ImportedCleanedData <- ImportedAsIsData[complete.cases(ImportedAsIsData),]
+
+dim(ImportedCleanedData)
+head(ImportedCleanedData)
 
 ```
 
@@ -98,7 +100,7 @@ head(ImportedAsIsData, n=3)
 ####  1.1 List of variables contained in the dataset.
 
 ```{r}
-str(ImportedAsIsData)
+str(ImportedCleanedData)
 ```
 
 
@@ -110,10 +112,14 @@ str(ImportedAsIsData)
 Let's have a look and see if there are any null values in the data.
 
 ```{r}
-sapply(ImportedAsIsData, function(x) sum(is.na(x)))
+voter_data_null_count <- sapply(ImportedCleanedData, function(x) sum(is.na(x)))
+voter_data_null_count
 ```
 
-It appears the control, post, and flyer columns have over 50,000 null values. This could be a problem on why the results where so
+Ok, we just verified all NA values have been removed from the data set. Now we have identified the control population.
+
+
+
 ****************************
 <div id='id-section3'/>
 #### 2.0 Conclusion and Summary
