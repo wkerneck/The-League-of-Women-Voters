@@ -86,7 +86,12 @@ We have downloaded the data in a .CSV format. The .CSV file (LWV_Data.csv) was s
 ImportedAsIsData <- read.table("LWV_Data.csv", header=TRUE, sep=",", na.strings=c("NA", "NULL"))
 
 ImportedCleanedData <- ImportedAsIsData[complete.cases(ImportedAsIsData),]  #Removing all "NA" values from the dataset
+```
 
+After we have removed the NA's from the dataset we now have 24000 observations.
+
+
+```r
 dim(ImportedCleanedData)
 ```
 
@@ -95,7 +100,7 @@ dim(ImportedCleanedData)
 ```
 
 ```r
-head(ImportedCleanedData)
+head(ImportedCleanedData, n=3)
 ```
 
 ```
@@ -103,47 +108,30 @@ head(ImportedCleanedData)
 ## 39          0               non_y_h      5461            A             1
 ## 51          0               non_y_h      6832            A             0
 ## 217         0           non_y_non_h     16298            A             0
-## 313         1               non_y_h     20802            A             0
-## 370         0           non_y_non_h     23641            A             0
-## 374         0           non_y_non_h     23821            A             0
 ##     Voted.Gen..Elec..09.2010 Voted.Gen..Elec..07.2008
 ## 39                         0                        0
 ## 51                         0                        0
 ## 217                        0                        1
-## 313                        0                        1
-## 370                        1                        0
-## 374                        0                        1
 ##     Number.General.Elections Hispanic.Surname Young.Voter Eligible.2012
 ## 39                         1                1           0             1
 ## 51                         0                1           0             1
 ## 217                        1                0           0             1
-## 313                        1                1           0             1
-## 370                        1                0           0             1
-## 374                        1                0           0             1
 ##     Eligible.2010 Eligible.2008 Young.in.2012 Young.in.2010 Young.in.2008
 ## 39              1             1             0             0             0
 ## 51              1             1             0             0             0
 ## 217             1             1             0             0             0
-## 313             1             1             0             0             0
-## 370             1             1             0             0             0
-## 374             1             1             0             0             0
 ##       Voter.Category             type    ID control post flyer LOWPROP
 ## 39      Old Hispanic     Non_y_h_POST  5461       0    1     0       1
 ## 51      Old Hispanic     Non_y_h_POST  6832       0    1     0       1
 ## 217 Old Not Hispanic Non_y_non_h_POST 16298       0    1     0       1
-## 313     Old Hispanic     Non_y_h_POST 20802       0    1     0       1
-## 370 Old Not Hispanic Non_y_non_h_POST 23641       0    1     0       1
-## 374 Old Not Hispanic Non_y_non_h_POST 23821       0    1     0       1
 ##           city   zip U_S__CONGRESS byear
 ## 39  CARROLLTON 75007            24  1937
 ## 51  CARROLLTON 75006            24  1911
 ## 217    GARLAND 75042            32  1922
-## 313    GARLAND 75040            32  1938
-## 370    GARLAND 75041            32  1911
-## 374    GARLAND 75041            32  1927
 ```
 
 ****************************
+
 <div id='id-section2'/>
 ####  1.1 List of variables contained in the dataset.
 
@@ -183,9 +171,8 @@ str(ImportedCleanedData)
 ##  $ byear                   : int  1937 1911 1922 1938 1911 1927 1926 1928 1944 1931 ...
 ```
 
-
-
 ****************************
+
 <div id='id-section3'/>
 ####  1.2 Explorative Data Anaylsis (EDA)
 
@@ -219,8 +206,6 @@ voter_data_null_count
 ```
 
 Ok, we just verified all NA values have been removed from the data set. Now we have identified the control population.
-
-
 
 ****************************
 <div id='id-section3'/>

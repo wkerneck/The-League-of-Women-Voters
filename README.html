@@ -171,53 +171,35 @@ $(document).ready(function () {
 <p>We have downloaded the data in a .CSV format. The .CSV file (LWV_Data.csv) was saved to the root of the project folder.</p>
 <pre class="r"><code>ImportedAsIsData &lt;- read.table(&quot;LWV_Data.csv&quot;, header=TRUE, sep=&quot;,&quot;, na.strings=c(&quot;NA&quot;, &quot;NULL&quot;))
 
-ImportedCleanedData &lt;- ImportedAsIsData[complete.cases(ImportedAsIsData),]  #Removing all &quot;NA&quot; values from the dataset
-
-dim(ImportedCleanedData)</code></pre>
+ImportedCleanedData &lt;- ImportedAsIsData[complete.cases(ImportedAsIsData),]  #Removing all &quot;NA&quot; values from the dataset</code></pre>
+<p>After we have removed the NA’s from the dataset we now have 24000 observations.</p>
+<pre class="r"><code>dim(ImportedCleanedData)</code></pre>
 <pre><code>## [1] 24000    27</code></pre>
-<pre class="r"><code>head(ImportedCleanedData)</code></pre>
+<pre class="r"><code>head(ImportedCleanedData, n=3)</code></pre>
 <pre><code>##     VOTED2014 Young.Hispanic.Status ID.Number Voter.Status Voted.11.2012
 ## 39          0               non_y_h      5461            A             1
 ## 51          0               non_y_h      6832            A             0
 ## 217         0           non_y_non_h     16298            A             0
-## 313         1               non_y_h     20802            A             0
-## 370         0           non_y_non_h     23641            A             0
-## 374         0           non_y_non_h     23821            A             0
 ##     Voted.Gen..Elec..09.2010 Voted.Gen..Elec..07.2008
 ## 39                         0                        0
 ## 51                         0                        0
 ## 217                        0                        1
-## 313                        0                        1
-## 370                        1                        0
-## 374                        0                        1
 ##     Number.General.Elections Hispanic.Surname Young.Voter Eligible.2012
 ## 39                         1                1           0             1
 ## 51                         0                1           0             1
 ## 217                        1                0           0             1
-## 313                        1                1           0             1
-## 370                        1                0           0             1
-## 374                        1                0           0             1
 ##     Eligible.2010 Eligible.2008 Young.in.2012 Young.in.2010 Young.in.2008
 ## 39              1             1             0             0             0
 ## 51              1             1             0             0             0
 ## 217             1             1             0             0             0
-## 313             1             1             0             0             0
-## 370             1             1             0             0             0
-## 374             1             1             0             0             0
 ##       Voter.Category             type    ID control post flyer LOWPROP
 ## 39      Old Hispanic     Non_y_h_POST  5461       0    1     0       1
 ## 51      Old Hispanic     Non_y_h_POST  6832       0    1     0       1
 ## 217 Old Not Hispanic Non_y_non_h_POST 16298       0    1     0       1
-## 313     Old Hispanic     Non_y_h_POST 20802       0    1     0       1
-## 370 Old Not Hispanic Non_y_non_h_POST 23641       0    1     0       1
-## 374 Old Not Hispanic Non_y_non_h_POST 23821       0    1     0       1
 ##           city   zip U_S__CONGRESS byear
 ## 39  CARROLLTON 75007            24  1937
 ## 51  CARROLLTON 75006            24  1911
-## 217    GARLAND 75042            32  1922
-## 313    GARLAND 75040            32  1938
-## 370    GARLAND 75041            32  1911
-## 374    GARLAND 75041            32  1927</code></pre>
+## 217    GARLAND 75042            32  1922</code></pre>
 <hr />
 <div id="id-section2"></div>
 </div>
