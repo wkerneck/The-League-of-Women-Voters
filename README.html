@@ -171,7 +171,7 @@ $(document).ready(function () {
 <p>We have downloaded the data in a .CSV format. The .CSV file (LWV_Data.csv) was saved to the root of the project folder.</p>
 <pre class="r"><code>ImportedAsIsData &lt;- read.table(&quot;LWV_Data.csv&quot;, header=TRUE, sep=&quot;,&quot;, na.strings=c(&quot;NA&quot;, &quot;NULL&quot;))
 
-ImportedCleanedData &lt;- ImportedAsIsData[complete.cases(ImportedAsIsData),]
+ImportedCleanedData &lt;- ImportedAsIsData[complete.cases(ImportedAsIsData),]  #Removing all &quot;NA&quot; values from the dataset
 
 dim(ImportedCleanedData)</code></pre>
 <pre><code>## [1] 24000    27</code></pre>
@@ -257,7 +257,7 @@ dim(ImportedCleanedData)</code></pre>
 </div>
 <div id="explorative-data-anaylsis-eda" class="section level4">
 <h4>1.2 Explorative Data Anaylsis (EDA)</h4>
-<p>Let’s have a look and see if there are any null values in the data.</p>
+<p>Let’s have a look and see if there are any null values left in the dataset.</p>
 <pre class="r"><code>voter_data_null_count &lt;- sapply(ImportedCleanedData, function(x) sum(is.na(x)))
 voter_data_null_count</code></pre>
 <pre><code>##                VOTED2014    Young.Hispanic.Status                ID.Number 

@@ -85,7 +85,7 @@ We have downloaded the data in a .CSV format. The .CSV file (LWV_Data.csv) was s
 ```r
 ImportedAsIsData <- read.table("LWV_Data.csv", header=TRUE, sep=",", na.strings=c("NA", "NULL"))
 
-ImportedCleanedData <- ImportedAsIsData[complete.cases(ImportedAsIsData),]
+ImportedCleanedData <- ImportedAsIsData[complete.cases(ImportedAsIsData),]  #Removing all "NA" values from the dataset
 
 dim(ImportedCleanedData)
 ```
@@ -189,7 +189,7 @@ str(ImportedCleanedData)
 <div id='id-section3'/>
 ####  1.2 Explorative Data Anaylsis (EDA)
 
-Let's have a look and see if there are any null values in the data.
+Let's have a look and see if there are any null values left in the dataset.
 
 
 ```r
