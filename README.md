@@ -1,5 +1,5 @@
 # 2016-0509 MSDS 6304-401 Week 8 Case Study
-Chris Woodward, Bill Kerneckel, Claire Chu   
+Chris Woodard, Bill Kerneckel, Claire Chu   
 July 10, 2016  
 
 <br>
@@ -440,9 +440,10 @@ This dataset had a variety of issues that could have skewed the results of the s
 
 Further exploration of the data column "voter type" from the original data set showed that 295,050 of the observations were "Old Non-Hispanic". Based on the data, we can see that "Old Non-Hispanic" voters made up over 50% of the sample. With this information, we cannot assume that the samples were randomly selected. Therefore, the sample drawn for this study was not representative of the population. This means that the results do not accurately reflect the voting propensity of young and hispanic voters. Priority seems to have been misplaced on matching the number of hispanics vs non-hispanics for the sample and this could have affected the results and explain why the results show lower voter turnout.
 
-We suspect that you might be able to fix this error by removing the null values from the original dataset. Removing these, resulted in a more accurate representation of all the populations voter categories. With additional time and resources, we would have further investigated this claim.
+Based on what the proportions of the original population, we can see evidence of a sampling error and the sample was not an accurate representation which lead to inaccurate results for low voter turnout for the two treatments.
 
 ****************************
 <div id='id-section4'/>
 #### Acknowledgements
 
+Datasets and problem statement came from bi-directional learning from Chapter 8. 
