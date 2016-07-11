@@ -1,6 +1,6 @@
 ---
 title: "2016-0509 MSDS 6304-401 Week 8 Case Study"
-author: "Chris Woodward Bill Kerneckel"
+author: "Chris Woodward, Bill Kerneckel, Claire Chu "
 date: "July 10, 2016"
 output:
   html_document:
@@ -60,6 +60,13 @@ no more than two pages.
 We will discuss the case study in Unit 10 live session.
 
 ****************************
+#### Libary needed
+
+```{r}
+library(ggplot2)
+```
+
+****************************
 #### Setting your working directory
 
 In order for the analysis of thedatasets you must set your working directory to the following:
@@ -72,9 +79,9 @@ setwd("/Users/wkerneck/desktop/Voter_Data/")
 
 #### Table of Contents
 
-- 1.0  [Import data](#id-section1)
-- 1.1  [Alphabetic List of Variables and Attributes](#id-section2)
-- 1.2  [Explorative Data Analysis (EDA)](#id-section3)
+- 1.0 [Import data](#id-section1)
+- 1.1 [Alphabetic List of Variables and Attributes](#id-section2)
+- 1.2 [Explorative Data Analysis (EDA)](#id-section3)
 - 2.0 [Conclusion and Summary](#id-section4) 
 - 3.0 [Acknowledgements](#id-section5) 
 
@@ -85,14 +92,25 @@ setwd("/Users/wkerneck/desktop/Voter_Data/")
 
 We have downloaded the data in a .CSV format. The .CSV file (LWV_Data.csv) was saved to the root of the project folder.
 
+<strong>Orignal Voter Dataset:</strong>
+
 ```{r}
 ImportedAsIsData <- read.table("LWV_Data.csv", header=TRUE, sep=",", na.strings=c("NA", "NULL"))
+```
 
+<strong>Removed NA's from Dataset:</strong>
+
+```{r}
 ImportedCleanedData <- ImportedAsIsData[complete.cases(ImportedAsIsData),]  #Removing all "NA" values from the dataset
 ```
 
-After we have removed the NA's from the dataset we now have 24000 observations.
+<strong>Orginal Voter Dataset:</strong>
+```{r}
+dim(ImportedAsIsData)
+head(ImportedAsIsData, n=3)
+```
 
+<strong>Sample Voter Dataset:</strong>
 ```{r}
 dim(ImportedCleanedData)
 head(ImportedCleanedData, n=3)
@@ -101,31 +119,55 @@ head(ImportedCleanedData, n=3)
 ****************************
 
 <div id='id-section2'/>
-####  1.1 List of variables contained in the dataset.
+####  1.1 List of variables contained in each the dataset.
 
+
+<strong>Orginal Voter Dataset:</strong>
+```{r}                                 
+str(ImportedAsIsData)
+
+```
+
+<strong>Sample Voter Dataset:</strong>
 ```{r}
 str(ImportedCleanedData)
 ```
+
 
 ****************************
 
 <div id='id-section3'/>
 ####  1.2 Explorative Data Anaylsis (EDA)
 
-Let's have a look and see if there are any null values left in the dataset.
+Let's have a look at the summary and votes by ethnicity for each dataset so we can do some comparisons:
 
+<strong>Orginal Voter Dataset:</strong>
 ```{r}
-voter_data_null_count <- sapply(ImportedCleanedData, function(x) sum(is.na(x)))
-voter_data_null_count
+summary(ImportedAsIsData)
 ```
 
-Ok, we just verified all NA values have been removed from the data set. Now we have identified the control population.
+
+<strong>Sample Voter Dataset:</strong>
+```{r}
+summary(ImportedCleanedData)
+```
+
+```{r}
+ggplot(subset(ImportedAsIsData), aes(x=Voter.Category))+geom_bar(aes(y= ..count..), stat="count")+ggtitle("Orginal Voter Data by Ethnicity")
+```
+
+```{r}
+ggplot(subset(ImportedCleanedData), aes(x=Voter.Category))+geom_bar(aes(y= ..count..), stat="count")+ggtitle("Sample Voter Data by Ethnicity")
+```
 
 ****************************
 <div id='id-section3'/>
 #### 2.0 Conclusion and Summary
 
+Clustering Error???
+The sample is not representative of the population.
 
+Display summary of catagories of demographics from population and compare it to the sample population. Under representative.
 
 
 ****************************
