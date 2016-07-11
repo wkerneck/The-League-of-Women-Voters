@@ -8,7 +8,6 @@ July 10, 2016
 
 #### Problem Statement
 
-
 The League of Women Voters asked PhD and Masters’ students enrolled in a statistical
 consulting course in the Department of Statistical Science at SMU to help them
 perform an experiment to determine whether sending either a postcard or a voter’s
@@ -83,7 +82,7 @@ setwd("/Users/wkerneck/desktop/Voter_Data/")
 - 3.0 [Acknowledgements](#id-section5) 
 
 ****************************
- 
+
 <div id='id-section1'/>
 ####  1.0 Import data
 
@@ -186,7 +185,6 @@ head(ImportedCleanedData, n=3)
 ```
 
 ****************************
-
 <div id='id-section2'/>
 ####  1.1 List of variables contained in each the dataset.
 
@@ -438,11 +436,11 @@ ggplot(subset(ImportedCleanedData), aes(x=Voter.Category))+geom_bar(aes(y= ..cou
 <div id='id-section3'/>
 #### 2.0 Conclusion and Summary
 
-Clustering Error???
-The sample is not representative of the population.
+This dataset had a variety of issues that could have skewed the results of the study. We found an overwhelming number of null values. The original data set had 531,735 observations and removing the NA's from the dataset left us with 24,000 entries.
 
-Display summary of catagories of demographics from population and compare it to the sample population. Under representative.
+Further exploration of the data column "voter type" from the original data set showed that 295,050 of the observations were "Old Non-Hispanic". Based on the data, we can see that "Old Non-Hispanic" voters made up over 50% of the sample. With this information, we cannot assume that the samples were randomly selected. Therefore, the sample drawn for this study was not representative of the population. This means that the results do not accurately reflect the voting propensity of young and hispanic voters. Priority seems to have been misplaced on matching the number of hispanics vs non-hispanics for the sample and this could have affected the results and explain why the results show lower voter turnout.
 
+We suspect that you might be able to fix this error by removing the null values from the original dataset. Removing these, resulted in a more accurate representation of all the populations voter categories. With additional time and resources, we would have further investigated this claim.
 
 ****************************
 <div id='id-section4'/>
