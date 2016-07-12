@@ -433,7 +433,7 @@ ggplot(subset(ImportedCleanedData), aes(x=Voter.Category))+geom_bar(aes(y= ..cou
 ![](README_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 
 ****************************
-<div id='id-section3'/>
+<div id='id-section4'/>
 #### 2.0 Conclusion and Summary
 
 This dataset had a variety of issues that could have skewed the results of the study. We found an overwhelming number of null values. The original data set had 531,735 observations and removing the NA's from the dataset left us with 24,000 entries.
@@ -443,7 +443,7 @@ Further exploration of the data column "voter type" from the original data set s
 Based on what the proportions of the original population, we can see evidence of a sampling error and the sample was not an accurate representation which lead to inaccurate results for low voter turnout for the two treatments.
 
 ****************************
-<div id='id-section4'/>
+<div id='id-section5'/>
 #### Acknowledgements
 
 Datasets and problem statement came from bi-directional learning from Chapter 8. 
